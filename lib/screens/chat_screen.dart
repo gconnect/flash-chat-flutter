@@ -17,6 +17,13 @@ class _ChatScreenState extends State<ChatScreen> {
   final _auth = FirebaseAuth.instance;
   String messageText;
   final textEditingController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    getCurrentUser();
+  }
+
   Future<void> getCurrentUser() async {
     try {
       final user = await _auth.currentUser();
@@ -27,20 +34,6 @@ class _ChatScreenState extends State<ChatScreen> {
     } catch (e) {
       print(e);
     }
-  }
-
-//  void MessageStream() async {
-//    await for (var snapshot in _firestore.collection('messages').snapshots()) {
-//      for (var messages in snapshot.documents) {
-//        print(messages.data);
-//      }
-//    }
-//  }
-
-  @override
-  void initState() {
-    super.initState();
-    getCurrentUser();
   }
 
   @override
